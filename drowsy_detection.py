@@ -22,13 +22,13 @@ def get_mediapipe_app(
 
     return face_mesh
 
-
+@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def distance(point_1, point_2):
     """Calculate l2-norm between two points"""
     dist = sum([(i - j) ** 2 for i, j in zip(point_1, point_2)]) ** 0.5
     return dist
 
-
+# @st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def get_ear(landmarks, refer_idxs, frame_width, frame_height):
     """
     Calculate Eye Aspect Ratio for one eye.
@@ -66,7 +66,7 @@ def get_ear(landmarks, refer_idxs, frame_width, frame_height):
 
     return ear, coords_points
 
-
+# @st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def calculate_avg_ear(landmarks, left_eye_idxs, right_eye_idxs, image_w, image_h):
     # Calculate Eye aspect ratio
 
@@ -76,7 +76,7 @@ def calculate_avg_ear(landmarks, left_eye_idxs, right_eye_idxs, image_w, image_h
 
     return Avg_EAR, (left_lm_coordinates, right_lm_coordinates)
 
-
+@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def plot_eye_landmarks(frame, left_lm_coordinates, right_lm_coordinates, color):
     for lm_coordinates in [left_lm_coordinates, right_lm_coordinates]:
         if lm_coordinates:
@@ -86,7 +86,7 @@ def plot_eye_landmarks(frame, left_lm_coordinates, right_lm_coordinates, color):
     frame = cv2.flip(frame, 1)
     return frame
 
-
+@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
 def plot_text(image, text, origin, color, font=cv2.FONT_HERSHEY_SIMPLEX, fntScale=0.8, thickness=2):
     image = cv2.putText(image, text, origin, font, fntScale, color, thickness)
     return image
