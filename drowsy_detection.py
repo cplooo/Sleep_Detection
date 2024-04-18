@@ -5,7 +5,7 @@ import mediapipe as mp
 from mediapipe.python.solutions.drawing_utils import _normalized_to_pixel_coordinates as denormalize_coordinates
 import streamlit as st
 
-@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
+@st.cache_resource
 def get_mediapipe_app(
     max_num_faces=1,
     refine_landmarks=True,
