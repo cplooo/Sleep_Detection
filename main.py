@@ -51,7 +51,7 @@ audio_handler = AudioFrameHandler(sound_file_path=alarm_file_path)
 lock = threading.Lock()  # For thread-safe access & to prevent race-condition.
 shared_state = {"play_alarm": False}
 
-@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
+
 def video_frame_callback(frame: av.VideoFrame):
     frame = frame.to_ndarray(format="bgr24")  # Decode and convert frame to RGB
 
@@ -61,7 +61,7 @@ def video_frame_callback(frame: av.VideoFrame):
 
     return av.VideoFrame.from_ndarray(frame, format="bgr24")  # Encode and return BGR frame
 
-@st.cache_data(ttl=3600, show_spinner="正在加載資料...")  ## Add the caching decorator
+
 def audio_frame_callback(frame: av.AudioFrame):
     with lock:  # access the current “play_alarm” state
         play_alarm = shared_state["play_alarm"]
