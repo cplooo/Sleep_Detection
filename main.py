@@ -28,7 +28,7 @@ st.set_page_config(
 col1, col2 = st.columns(spec=[6, 2], gap="medium")
 
 with col1:
-    st.title("Drowsiness Detection!!!🥱😪😴")
+    st.title("睡意偵測 !!!🥱😪😴")
     with st.container():
         c1, c2 = st.columns(spec=[1, 1])
         with c1:
